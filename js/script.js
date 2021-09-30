@@ -50,6 +50,7 @@ function igual(){
 
 igual()
 
+// --------------------------------------------------------------------- //
 
 let Zero = 5;
 let P = document.getElementById('p-02');
@@ -76,7 +77,7 @@ function Igual(){
 
 Igual()
 
-
+// ------------------------------------------------------------------ //
 
 let ZERO = 3;
 let Pp = document.getElementById('p-03');
@@ -117,53 +118,69 @@ let cron ;
 
 function start() {
     cron = setInterval(() => { timer(); }, tempo);
-}
+};
 
 function Continuar(){
     continuar.style.display = 'none'
     trabalho.style.display= 'block'
-}
+};
 
 comeca.addEventListener('click', () => {
     Continuar()
     contado()
-})
+});
 
 function volta(){
     continuar.style.display = 'block'
     trabalho.style.display= 'none'
-}
-
-inicio.addEventListener('click', () => {
-    volta()
-})
+};
 
 function contado(){
     Trabalho.innerHTML = zero + ':00' 
     console.log(Trabalho)
-}
+};
+
+// ------------------------------------------------ //
+var mim = 0;
+var seconds = 0;
+var timer = null;
+var duration = 0;
+
+var myVar;
 
 
 function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
+    timer = duration;
+
+    myVar = setInterval(function () {
+        mim = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
-        minutes = minutes < 10 ? "0" + minutes : minutes;
+        mim = mim < 10 ? "0" + mim : mim;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-        display.innerHTML = minutes + ":" + seconds;
+        display.textContent = mim + ":" + seconds;
         if (--timer < 0) {
-            timer = duration;
+            timer = 0;
         }
     }, 1000);
-}
+};
 
 iniciar.addEventListener('click', () => {
     as()
-})
+});
 
 const as = function () {
-    var duration = 60 * zero; // Converter para segundos
+    duration = 60 * zero; // Converter para segundos
         display = document.getElementById('trabalho'); // selecionando o timer
     startTimer(duration, display); // iniciando o timer
 };
+
+function stop(){
+    clearInterval(myVar)
+}
+
+inicio.addEventListener('click', () => {
+    volta()
+    stop()
+    seconds = 0;
+    mim = 0;
+});
