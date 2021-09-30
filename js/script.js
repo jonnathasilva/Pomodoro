@@ -123,6 +123,9 @@ function start() {
 function Continuar(){
     continuar.style.display = 'none'
     trabalho.style.display= 'block'
+    pausa.style.display = 'none'
+    play.style.display = 'none'
+    iniciar.style.display = 'block'
 };
 
 comeca.addEventListener('click', () => {
@@ -141,12 +144,14 @@ function contado(){
 };
 
 // ------------------------------------------------ //
+let pausa = document.getElementById('pausa');
+let play = document.getElementById('start');
 var mim = 0;
 var seconds = 0;
 var timer = null;
 var duration = 0;
 
-var myVar;
+let myVar;
 
 
 function startTimer(duration, display) {
@@ -166,6 +171,8 @@ function startTimer(duration, display) {
 
 iniciar.addEventListener('click', () => {
     as()
+    pausa.style.display = 'block'
+    iniciar.style.display = 'none'
 });
 
 const as = function () {
@@ -178,9 +185,28 @@ function stop(){
     clearInterval(myVar)
 }
 
+pausa.addEventListener('click', () => {
+    stop()
+    pausa.style.display = 'none'
+    play.style.display = 'block'
+})
+
 inicio.addEventListener('click', () => {
     volta()
     stop()
     seconds = 0;
     mim = 0;
 });
+
+function start(){
+    pausa.style.display = 'block'
+    play.style.display = 'none'
+    duration = timer
+    startTimer(duration, display); // iniciando o timer
+};
+
+play.addEventListener('click', () => {
+    start()
+});
+
+let ver = trabalho > 0;
