@@ -1,4 +1,4 @@
-* {
+* {* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -79,7 +79,7 @@ button {
 .p-bnt {
   margin: auto;
   margin-top: 15px;
-  width: 23%;
+  width: 19%;
 }
 
 #comeca {
@@ -180,15 +180,92 @@ button {
   width: 70%;
 }
 
+/* #pausa {
+  display: none;
+} */
+
 @media (max-width: 790px) {
   .card {
     display: block;
     width: 100%;
     text-align: center;
+    margin: 0;
   }
   .p-bnt {
     margin: auto;
     margin-top: 15px;
-    width: 15%;
+    width: 20%;
+  }
+  .bnts {
+    top: 48px;
+  }
+  .imgs {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 25px;
+  }
+  .b {
+    display: block;
+    margin-bottom: 0;
+  }
+  #p {
+    font-size: xx-large;
+  }
+  .ps {
+    padding: 50px 147px;
+  }
+  .card h2 {
+    font-size: xx-large;
+  }
+}
+
+@media (max-width: 550px) {
+  .p-bnt {
+    width: 30%;
+  }
+}
+
+@media (max-width: 460px) {
+  .bnts {
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .b {
+    margin-left: 6px;
+  }
+  .imgs {
+    display: inline-block;
+  }
+  .card {
+    margin-bottom: 30px;
+  }
+  .p-bnt {
+    width: 39%;
+  }
+}
+
+@media (max-width: 350px) {
+  .tempo {
+    width: 132px;
+    height: 133px;
+  }
+  #trabalho {
+    font-size: x-large;
+  }
+  .contener {
+    padding: 0 28px;
+  }
+  .ps {
+    padding: 50px 81px;
+  }
+  .p-bnt {
+    width: 45%;
+  }
+}
+
+@media (max-width: 279px) {
+  .p-bnt {
+    width: 59%;
   }
 }
