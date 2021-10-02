@@ -1,4 +1,4 @@
-* {* {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,6 +8,10 @@
 
 body {
   background-color: #333853;
+}
+
+#section-03 {
+  display: none;
 }
 
 .contener {
@@ -43,7 +47,7 @@ button {
 .imgs {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 24%;
   border: none;
   margin-bottom: 5px;
   margin-right: 5px;
@@ -139,7 +143,8 @@ button {
   padding-top: 21%;
 }
 
-#trabalho {
+#trabalho,
+#trabalho-02 {
   text-align: center;
   font-size: xxx-large;
 }
@@ -180,9 +185,23 @@ button {
   width: 70%;
 }
 
-/* #pausa {
-  display: none;
-} */
+/* ====================================section 03 =================================== */
+
+.amarelo {
+  border: 4px solid #f2c94c;
+}
+
+.a {
+  color: #f2c94c;
+}
+
+.A {
+  background-color: #f2c94c;
+}
+
+.Z {
+  background-color: #3c4262;
+}
 
 @media (max-width: 790px) {
   .card {
@@ -228,11 +247,16 @@ button {
 @media (max-width: 460px) {
   .bnts {
     top: 0;
-    display: flex;
-    justify-content: space-between;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .a {
+    float: left;
+    margin: 0;
   }
   .b {
-    margin-left: 6px;
+    float: right;
   }
   .imgs {
     display: inline-block;
@@ -250,7 +274,8 @@ button {
     width: 132px;
     height: 133px;
   }
-  #trabalho {
+  #trabalho,
+  #trabalho-02 {
     font-size: x-large;
   }
   .contener {
