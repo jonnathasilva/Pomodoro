@@ -150,6 +150,7 @@ button {
 }
 
 .h3 {
+  text-align: center;
   color: #219653;
   font-size: xx-large;
   font-weight: 500;
@@ -242,6 +243,24 @@ button {
   .p-bnt {
     width: 30%;
   }
+  .contener {
+    padding-top: 60px;
+  }
+  .box-02 {
+    display: block;
+  }
+  .sub-box {
+    width: 54%;
+    margin: auto;
+  }
+  .sub-box-02 {
+    width: 34%;
+    margin: auto;
+    margin-top: 80px;
+  }
+  .largura {
+    padding: 50px 133px;
+  }
 }
 
 @media (max-width: 460px) {
@@ -251,15 +270,12 @@ button {
     width: 100%;
     margin-bottom: 10px;
   }
-  .a {
+  .imgs {
+    display: inline-block;
     float: left;
-    margin: 0;
   }
   .b {
     float: right;
-  }
-  .imgs {
-    display: inline-block;
   }
   .card {
     margin-bottom: 30px;
@@ -267,30 +283,71 @@ button {
   .p-bnt {
     width: 39%;
   }
-}
-
-@media (max-width: 350px) {
-  .tempo {
-    width: 132px;
-    height: 133px;
+  .sub-box {
+    width: 63%;
   }
-  #trabalho,
-  #trabalho-02 {
-    font-size: x-large;
+  .sub-box-02 {
+    width: 48%;
   }
   .contener {
-    padding: 0 28px;
+    padding: 0 48px;
+  }
+}
+
+@media (max-width: 380px) {
+  .sub-box {
+    width: 80%;
+  }
+  .sub-box-02 {
+    width: 56%;
+  }
+}
+
+@media (max-width: 370px) {
+  .sub-box {
+    width: 83%;
+  }
+  .sub-box-02 {
+    width: 58%;
   }
   .ps {
-    padding: 50px 81px;
+    padding: 50px 123px;
   }
   .p-bnt {
     width: 45%;
   }
+  .largura {
+    padding: 48px 110px;
+  }
 }
 
-@media (max-width: 279px) {
+@media (max-width: 329px) {
+  .contener {
+    padding: 0 28px;
+    padding-top: 10px;
+  }
+  .sub-box {
+    width: 84%;
+  }
+  .sub-box-02 {
+    width: 53%;
+  }
+}
+
+@media (max-width: 289px) {
   .p-bnt {
-    width: 59%;
+    width: 51%;
+  }
+  .ps {
+    padding: 50px 103px;
+  }
+  .contener {
+    padding: 0 14px;
+  }
+  .sub-box {
+    width: 88%;
+  }
+  .sub-box-02 {
+    width: 55%;
   }
 }
