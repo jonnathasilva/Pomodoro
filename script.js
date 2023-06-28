@@ -11,39 +11,38 @@ let Pp = document.getElementById("p-03");
 let SessionsBtnMais = document.getElementById("mais-03");
 let SessionsBtnMenos = document.getElementById("menos-03");
 
-const add = {
-  Add(key) {
-    switch (key) {
-      case "Work":
-        zero[0]++;
-        p.innerHTML = zero[0];
-        break;
-      case "Stop":
-        zero[1]++;
-        P.innerHTML = zero[1];
-        break;
-      case "Sessions":
-        zero[2]++;
-        Pp.innerHTML = zero[2];
-        break;
-    }
-  },
-  remove(key) {
-    switch (key) {
-      case "Work":
-        zero[0]--;
-        p.innerHTML = zero[0];
-        break;
-      case "Stop":
-        zero[1]--;
-        P.innerHTML = zero[1];
-        break;
-      case "Sessions":
-        zero[2]--;
-        Pp.innerHTML = zero[2];
-        break;
-    }
-  },
+const add = (key) => {
+  switch (key) {
+    case "Work":
+      zero[0]++;
+      p.innerHTML = zero[0];
+      break;
+    case "Stop":
+      zero[1]++;
+      P.innerHTML = zero[1];
+      break;
+    case "Sessions":
+      zero[2]++;
+      Pp.innerHTML = zero[2];
+      break;
+  }
+};
+
+const remove = (key) => {
+  switch (key) {
+    case "Work":
+      zero[0]--;
+      p.innerHTML = zero[0];
+      break;
+    case "Stop":
+      zero[1]--;
+      P.innerHTML = zero[1];
+      break;
+    case "Sessions":
+      zero[2]--;
+      Pp.innerHTML = zero[2];
+      break;
+  }
 };
 
 function igual(key) {
@@ -74,32 +73,32 @@ igual("Stop");
 igual("Sessions");
 
 WorkBtnMais.addEventListener("click", () => {
-  add.Add("Work");
+  add("Work");
   igual("Work");
 });
 
 WorkBtnMenos.addEventListener("click", () => {
-  add.remove("Work");
+  remove("Work");
   igual("Work");
 });
 
 StopBtnMais.addEventListener("click", () => {
-  add.Add("Stop");
+  add("Stop");
   igual("Stop");
 });
 
 StopBtnMenos.addEventListener("click", () => {
-  add.remove("Stop");
+  remove("Stop");
   igual("Stop");
 });
 
 SessionsBtnMais.addEventListener("click", () => {
-  add.Add("Sessions");
+  add("Sessions");
   igual("Sessions");
 });
 
 SessionsBtnMenos.addEventListener("click", () => {
-  add.remove("Sessions");
+  remove("Sessions");
   igual("Sessions");
 });
 
@@ -140,93 +139,116 @@ function volta() {
 }
 
 function contado() {
-  Trabalho.innerHTML = zero[0] + ":00";
-  console.log(Trabalho);
+  Trabalho.innerHTML = zero[0] < 10 ? "0" + zero[0] + ":00" : zero[0] + ":00";
 }
 
 function CONTADO() {
-  TRABALHO.innerHTML = zero[1] + ":00";
-  console.log(Trabalho);
+  TRABALHO.innerHTML = zero[1] < 10 ? "0" + zero[1] + ":00" : zero[1] + ":00";
 }
-
-var myVaR;
 
 let pausa = document.getElementById("pausa");
 let play = document.getElementById("start");
-var mim = 0;
+var minute = 0;
 var seconds = 0;
 var timer = 0;
 var duration = 0;
 
 let myVar;
 
-function startTimer(duration, display) {
+function startTimer(duration, display, name) {
   timer = duration;
 
-  myVar = setInterval(function () {
-    mim = parseInt(timer / 60, 10);
+  myVar = setInterval(async function () {
+    minute = parseInt(timer / 60, 10);
     seconds = parseInt(timer % 60, 10);
-    mim = mim < 10 ? "0" + mim : mim;
+    minute = minute < 10 ? "0" + minute : minute;
     seconds = seconds < 10 ? "0" + seconds : seconds;
-    display.textContent = mim + ":" + seconds;
+    display.textContent = minute + ":" + seconds;
     if (--timer < 0) {
-      timer = 0;
-      if (timer == 0) {
-        myVaR = setInterval(CONTADO, 100);
+      const next = timer + 1;
+      if (next === 0) {
         clearInterval(myVar);
 
-        section.style.display = "block";
-        trabalho.style.display = "none";
-        iniciar.style.display = "none";
-        pausa.style.display = "none";
-        play.style.display = "none";
-        PAUSA.style.display = "none";
-        PLAY.style.display = "none";
-        INICIAR.style.display = "block";
+        switch (name) {
+          case "Work":
+            work();
+            break;
+          case "Stop":
+            stop();
+            break;
+        }
       }
     }
   }, 1000);
 }
 
+const work = () => {
+  myVar = setInterval(CONTADO, 100);
+  section.style.display = "block";
+  trabalho.style.display = "none";
+  iniciar.style.display = "none";
+  pausa.style.display = "none";
+  play.style.display = "none";
+  PAUSA.style.display = "none";
+  PLAY.style.display = "none";
+  INICIAR.style.display = "block";
+  return;
+};
+
+const stop = () => {
+  contado();
+  section.style.display = "none";
+  trabalho.style.display = "block";
+  iniciar.style.display = "block";
+  INICIAR.style.display = "none";
+  return;
+};
+
+const as = (index, name, session) => {
+  minute = 0;
+  seconds = 0;
+  timer = 0;
+  duration = 0;
+  myVar = null;
+
+  duration = 60 * zero[index];
+  display = document.getElementById(name);
+  startTimer(duration, display, session);
+};
+
 iniciar.addEventListener("click", () => {
-  as();
+  as(0, "trabalho", "Work");
   pausa.style.display = "block";
   iniciar.style.display = "none";
 });
 
-const as = function () {
-  duration = 60 * zero; // Converter para segundos
-  display = document.getElementById("trabalho"); // selecionando o timer
-  startTimer(duration, display); // iniciando o timer
-};
-
-function stop() {
-  clearInterval(myVar);
+function pauseTime(name) {
+  clearInterval(name);
 }
 
 pausa.addEventListener("click", () => {
-  stop();
+  pauseTime(myVar);
   pausa.style.display = "none";
   play.style.display = "block";
 });
 
 Inicio.addEventListener("click", () => {
   volta();
-  stop();
+  pauseTime(myVar);
   seconds = 0;
   mim = 0;
   timer = null;
 });
 
-function start() {
-  pausa.style.display = "block";
-  play.style.display = "none";
+function start(pauseTime, start) {
+  pauseTime.style.display = "block";
+  start.style.display = "none";
   duration = timer;
-  startTimer(duration, display); // iniciando o timer
+  startTimer(duration, display);
 }
 
 play.addEventListener("click", () => {
-  start();
+  start(pausa, play);
 });
 
 let TRABALHO = document.getElementById("trabalho-02");
@@ -234,68 +256,30 @@ let PAUSA = document.getElementById("pausa-02");
 let PLAY = document.getElementById("start-02");
 let INICIAR = document.getElementById("iniciar-02");
 let INICIO = document.getElementById("inicio-02");
-var minuto = 0;
-var Seconds = 0;
-var Timer = 0;
-var Duration = 0;
-
-let MYVar;
-
-function StartTimer(Duration, Display) {
-  Timer = Duration;
-
-  MYVar = setInterval(function () {
-    minuto = parseInt(Timer / 60, 10);
-    Seconds = parseInt(Timer % 60, 10);
-    minuto = minuto < 10 ? "0" + minuto : minuto;
-    Seconds = Seconds < 10 ? "0" + Seconds : Seconds;
-    Display.innerHTML = minuto + ":" + Seconds;
-    if (--Timer < 0) {
-      Timer = 0;
-    }
-  }, 1000);
-}
 
 INICIAR.addEventListener("click", () => {
-  clearInterval(myVaR);
-  bs();
+  clearInterval(myVar);
+  as(1, "trabalho-02", "Stop");
   PAUSA.style.display = "block";
   INICIAR.style.display = "none";
 });
 
-const bs = function () {
-  Duration = 60 * Zero; // Converter para segundos
-  Display = document.getElementById("trabalho-02"); // selecionando o timer
-  StartTimer(Duration, Display); // iniciando o timer
-};
-
-function Stop() {
-  clearInterval(MYVar);
-}
-
 PAUSA.addEventListener("click", () => {
-  Stop();
+  pauseTime(myVar);
   PAUSA.style.display = "none";
   PLAY.style.display = "block";
 });
 
 INICIO.addEventListener("click", () => {
   VOLTA();
-  Stop();
-  Seconds = 0;
-  minuto = 0;
-  Timer = null;
+  pauseTime(myVar);
+  seconds = 0;
+  minute = 0;
+  timer = null;
 });
 
-function Start() {
-  PAUSA.style.display = "block";
-  PLAY.style.display = "none";
-  Duration = Timer;
-  StartTimer(Duration, Display); // iniciando o timer
-}
-
 PLAY.addEventListener("click", () => {
-  Start();
+  start(PAUSA, PLAY);
 });
 
 function VOLTA() {
